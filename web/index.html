@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Validación un formulario</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        function valida(f) {
+            var ok = true;
+            var msg = "Debes escribir algo en los campos:\n";
+            if (f.elements[0].value == "") {
+                msg += " Usuario\n";
+                ok = false;
+            }
+            if (f.elements["fnacimiento"].value == "") {
+                msg += " Fecha de nacimiento";
+                ok = false;
+            }
+            if (ok == false)
+                alert(msg);
+            return ok;
+        }
+    $(function () {
+            $.datepicker.setDefaults($.datepicker.regional["es"]);
+            $("#fnacimiento").datepicker({
+                firstDay: 1
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form id="miForm" action="calcular" method="post" onsubmit="return valida(this)">
+        <p>
+            Usuario:
+            <input type="text" name="nusuario" id="nusuario" />
+            <br /> fecha de nacimiento:
+            <input type="text" name="fnacimiento" id="fnacimiento" />
+            <br />
+            <input type="submit" value="Enviar" />
+            <input type="reset" value="Borrar" />
+        </p>
+        
+    </form>
+</body>
+
+</html>
